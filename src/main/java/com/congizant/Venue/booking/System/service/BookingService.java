@@ -1,11 +1,14 @@
 package com.congizant.Venue.booking.System.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.congizant.Venue.booking.System.model.Booking;
+import com.congizant.Venue.booking.System.model.User;
 import com.congizant.Venue.booking.System.repository.BookingRepository;
 
 @Service
@@ -22,6 +25,15 @@ public class BookingService {
 		}
 		
 		return new ResponseEntity<Booking>(resBooking,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	public ResponseEntity<List<Booking>> getBookingByUser(User user) {
+		List<Booking> list = repository.findByUser(user);
+		if(list.size() > 0) {
+			return new ResponseEntity<List<Booking>>(list,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<List<Booking>>(list, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

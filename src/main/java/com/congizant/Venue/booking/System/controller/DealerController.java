@@ -2,6 +2,7 @@ package com.congizant.Venue.booking.System.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import com.congizant.Venue.booking.System.model.Dealer;
 import com.congizant.Venue.booking.System.service.DealerService;
 
 @RestController
+@CrossOrigin("*")
 public class DealerController {
 
 	@Autowired
@@ -22,7 +24,7 @@ public class DealerController {
 	}
 	
 	@PostMapping("/auth")
-	public ResponseEntity<Boolean> login(@RequestParam(name="username") String username, @RequestParam(name="password") String password){
+	public ResponseEntity<Dealer> login(@RequestParam(name="username") String username, @RequestParam(name="password") String password){
 		System.out.print(username+" "+password);
 		return service.login(username, password);
 	}

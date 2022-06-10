@@ -23,3 +23,4 @@ public class JwtAuthenticationEntityPoint implements AuthenticationEntryPoint{
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
 	}	
 }
+	

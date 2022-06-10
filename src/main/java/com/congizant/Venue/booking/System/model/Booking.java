@@ -34,13 +34,18 @@ public class Booking {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(long id, Date date, User user, Venue venue) {
+	
+
+	public Booking(long id, Date date, String venueType, User user, Venue venue) {
 		super();
 		this.id = id;
 		this.date = date;
+		this.venueType = venueType;
 		this.user = user;
 		this.venue = venue;
 	}
+
+
 
 	public long getId() {
 		return id;
@@ -73,5 +78,14 @@ public class Booking {
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
+
+	public String getVenueType() {
+		return venueType;
+	}
+
+	public void setVenueType(String venueType) {
+		this.venueType = venueType;
+	}
+
 	
 }

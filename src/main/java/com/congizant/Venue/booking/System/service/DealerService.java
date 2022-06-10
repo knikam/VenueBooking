@@ -22,10 +22,10 @@ public class DealerService {
 		return new ResponseEntity<Dealer>(resDealer, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	public ResponseEntity<Boolean> login(String username, String password){
+	public ResponseEntity<Dealer> login(String username, String password){
 		Dealer dealer = repository.findById(username).orElse(null);
 		if(dealer != null && dealer.getPassword().equals(password))
-			return new ResponseEntity<Boolean>(true,HttpStatus.OK);
-		return new ResponseEntity<Boolean>(false,HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Dealer>(dealer,HttpStatus.OK);
+		return new ResponseEntity<Dealer>(dealer,HttpStatus.NOT_FOUND);
 	}
 }
