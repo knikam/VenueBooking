@@ -1,5 +1,7 @@
 package com.congizant.Venue.booking.System.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,9 @@ public class BookingController {
 		return service.addBooking(booking);
 	}
 	
-	@GetMapping("/getBooking")
-	public ResponseEntity<List<Booking>> getBookingByUser(@RequestParam(name="user") User user){
+	@PostMapping("/getBooking")
+	public ResponseEntity<List<Booking>> getBookingByUser(@RequestBody User user){
+	
 		return service.getBookingByUser(user);
 	}
 }
