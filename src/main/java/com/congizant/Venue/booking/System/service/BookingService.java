@@ -18,6 +18,20 @@ public class BookingService {
 	BookingRepository repository;
 	
 	public ResponseEntity<Booking> addBooking(Booking booking){
+		List<Booking> resBook = repository.findAll();
+		boolean flag= false;
+	
+		for (Booking b : resBook) {
+			System.out.println(b.toString());
+			if(booking.getVenueType().equals(b.getVenueType()) && booking.getDate().equals(b.getDate()) && booking.getVenue().getId()==b.getVenue().getId()) {
+				flag = true;
+			}
+		}
+		
+		if(flag) {
+			return new ResponseEntity<Booking>(new Booking(),HttpStatus.CONFLICT);
+		}
+		
 		Booking resBooking = repository.save(booking);
 
 		if(resBooking != null) {	

@@ -18,7 +18,7 @@ public class Booking {
 	private long id;
 	
 	@Column(name="date")
-	private Date date;
+	private String date;
 	
 	@Column(name="venueType")
 	private String venueType;
@@ -38,7 +38,7 @@ public class Booking {
 
 	
 
-	public Booking(long id, Date date, String venueType, User user, Venue venue) {
+	public Booking(long id, String date, String venueType, User user, Venue venue) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -57,11 +57,11 @@ public class Booking {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -89,5 +89,6 @@ public class Booking {
 		this.venueType = venueType;
 	}
 
+	
 	
 }
