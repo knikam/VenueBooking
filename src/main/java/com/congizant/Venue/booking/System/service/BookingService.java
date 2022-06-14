@@ -17,6 +17,9 @@ public class BookingService {
 	@Autowired
 	BookingRepository repository;
 	
+	@Autowired 
+	EmailService emailService;
+	
 	public ResponseEntity<Booking> addBooking(Booking booking){
 		List<Booking> resBook = repository.findAll();
 		boolean flag= false;
@@ -33,7 +36,10 @@ public class BookingService {
 		}
 		
 		Booking resBooking = repository.save(booking);
-
+		
+		emailService.sendSimpleMessage(resBooking.getVenue().getDealer().getEmail(),
+				"Booking "+resBooking.getVenueType(),
+				" Hi "+resBooking.getVenue().getDealer().getName()+","+" Our User "+resBooking.getUser().getName()+" booked your "+resBooking.getVenueType()+" for date "+resBooking.getDate()+" Thank you");
 		if(resBooking != null) {	
 			return new ResponseEntity<Booking>(resBooking,HttpStatus.CREATED);
 		}
